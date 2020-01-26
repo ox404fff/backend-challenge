@@ -2,20 +2,20 @@
 
 namespace App\Repository;
 
-use App\Entity\UserCourses;
+use App\Entity\UserCourse;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method UserCourses|null find($id, $lockMode = null, $lockVersion = null)
- * @method UserCourses|null findOneBy(array $criteria, array $orderBy = null)
- * @method UserCourses[]    findAll()
- * @method UserCourses[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method UserCourse|null find($id, $lockMode = null, $lockVersion = null)
+ * @method UserCourse|null findOneBy(array $criteria, array $orderBy = null)
+ * @method UserCourse[]    findAll()
+ * @method UserCourse[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class UserCourseRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, UserCourses::class);
+        parent::__construct($registry, UserCourse::class);
     }
 }
