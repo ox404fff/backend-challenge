@@ -7,7 +7,7 @@ services:
     env_file:
       - ./docker/mysql/.env
     volumes:
-      - mysql-data:/var/lib/mysql
+      - neuro-nation-mysql-data:/var/lib/mysql
     ports:
       - "3306:3306"
     networks:
@@ -20,7 +20,8 @@ services:
       - ./app:/app
     networks:
       - neuro-nation
-    command: composer install
+    command: composer require annotations
+#    command: composer install
     tty: true
 
   php-fpm:
@@ -47,7 +48,7 @@ services:
       - php-fpm
 
 volumes:
-  mysql-data:
+  neuro-nation-mysql-data:
 
 networks:
   neuro-nation:
