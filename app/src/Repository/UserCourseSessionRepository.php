@@ -12,4 +12,26 @@ class UserCourseSessionRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, UserCourseSession::class);
     }
+
+    /**
+     * @param int $userId
+     * @param int $limit
+     * @return UserCourseSession[]
+     */
+    public function getGetLastSessions(int $userId, int $limit)
+    {
+        return $this->getEntityManager()->createQuery(
+<<<SQL
+            SELECT s 
+            FROM App\Entity\UserCourseSession s
+            WHERE s.user = :userId AND s.status = :status
+            ORDER BY s.id DESC
+SQL
+        )
+            ->setParameter('status', UserCourseSession::STATUS_COMPLETED)
+            ->setParameter('userId', $userId)
+            ->setMaxResults($limit)
+            ->getResult();
+    }
+
 }
