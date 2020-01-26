@@ -1,0 +1,53 @@
+version: "3"
+
+services:
+  mysql:
+    container_name: "neuro-nation-mysql"
+    build: ./docker/mysql
+    env_file:
+      - ./docker/mysql/.env
+    volumes:
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - neuro-nation
+
+  composer:
+    container_name: "neuro-nation-composer"
+    build: ./docker/composer
+    volumes:
+      - ./app:/app
+    networks:
+      - neuro-nation
+    command: composer install
+    tty: true
+
+  php-fpm:
+    container_name: "neuro-nation-php-fpm"
+    build: ./docker/php-fpm
+    volumes:
+      - ./app:/app
+    networks:
+      - neuro-nation
+    depends_on:
+      - composer
+      - mysql
+
+  nginx:
+    container_name: "neuro-nation-nginx"
+    build: ./docker/nginx
+    ports:
+      - "8077:80"
+    networks:
+      - neuro-nation
+    links:
+      - php-fpm
+    depends_on:
+      - php-fpm
+
+volumes:
+  mysql-data:
+
+networks:
+  neuro-nation:
