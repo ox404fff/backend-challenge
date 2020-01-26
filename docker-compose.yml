@@ -20,8 +20,8 @@ services:
       - ./app:/app
     networks:
       - neuro-nation
-    command: composer require annotations
 #    command: composer install
+    command:  composer require --dev symfony/maker-bundle
     tty: true
 
   php-fpm:
