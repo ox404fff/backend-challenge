@@ -105,4 +105,72 @@ class UserCourseSession
     {
         return $this->updatedAt;
     }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @param mixed $userCourse
+     * @return $this
+     */
+    public function setUserCourse($userCourse): self
+    {
+        $this->userCourse = $userCourse;
+        return $this;
+    }
+
+    /**
+     * @param mixed $user
+     * @return $this
+     */
+    public function setUser($user): self
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * @param mixed $status
+     * @return $this
+     */
+    public function setStatus($status): self
+    {
+        $this->status = $status;
+        return $this;
+    }
+
+    /**
+     * @param mixed $score
+     * @return $this
+     */
+    public function setScore($score): self
+    {
+        $this->score = $score;
+        return $this;
+    }
+
+    /**
+     * @param mixed $createdAt
+     * @return $this
+     */
+    public function setCreatedAt($createdAt): self
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * @param mixed $updatedAt
+     * @return $this
+     */
+    public function setUpdatedAt($updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
 }

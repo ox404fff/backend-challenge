@@ -23,6 +23,31 @@ services:
     command: composer install
     tty: true
 
+  unit-tests:
+    container_name: "neuro-nation-unit-tests"
+    build: ./docker/php-cli
+    volumes:
+      - ./app:/app
+    networks:
+      - neuro-nation
+    depends_on:
+      - composer
+    command: ./bin/phpunit
+
+  migrations:
+    container_name: "neuro-nation-migrations"
+    build: ./docker/php-cli
+    restart: on-failure
+    volumes:
+      - ./app:/app
+    networks:
+      - neuro-nation
+    depends_on:
+      - composer
+      - unit-tests
+      - mysql
+    command: ./bin/console doctrine:migrations:migrate
+
   php-fpm:
     container_name: "neuro-nation-php-fpm"
     build: ./docker/php-fpm
@@ -31,7 +56,9 @@ services:
     networks:
       - neuro-nation
     depends_on:
+      - migrations
       - composer
+      - unit-tests
       - mysql
 
   nginx:
