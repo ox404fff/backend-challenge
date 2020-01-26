@@ -10,6 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class UserCourseSession
 {
+    const STATUS_STARTED = 1;
+    const STATUS_COMPLETED = 2;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -46,4 +49,60 @@ class UserCourseSession
      * @ORM\Column(type="datetime", options={"default":"CURRENT_TIMESTAMP()"})
      */
     private $updatedAt;
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserCourse()
+    {
+        return $this->userCourse;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @return int
+     */
+    public function getScore(): int
+    {
+        return $this->score;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt(): \DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return $this->updatedAt;
+    }
 }
