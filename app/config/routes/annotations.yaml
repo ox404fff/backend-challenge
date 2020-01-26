@@ -1,0 +1,3 @@
+cabinet-bundle:
+  resource: "@CabinetBundle/Controller"
+  type: annotation
