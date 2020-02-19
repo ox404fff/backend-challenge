@@ -1,4 +1,4 @@
-# neuro-nation-backend-challenge
+# backend-challenge
 Backend Challenge
 
 Installation
